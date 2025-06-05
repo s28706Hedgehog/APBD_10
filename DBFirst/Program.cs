@@ -1,3 +1,6 @@
+using DBFirst.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace DBFirst;
 
 public class Program
@@ -6,12 +9,16 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddControllers();
         builder.Services.AddAuthorization();
-        
         builder.Services.AddOpenApi();
+        builder.Services.AddDbContext<Apbd10Context>(
+            opt => opt.UseSqlServer(
+                builder.Configuration.GetConnectionString("Default")
+            ));
 
         var app = builder.Build();
-        
+
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
