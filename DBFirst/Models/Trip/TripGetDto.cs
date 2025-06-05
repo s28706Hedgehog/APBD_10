@@ -11,5 +11,5 @@ public class TripGetDto
     public DateTime DateTo { get; set; }
     public int MaxPeople { get; set; }
     public List<CountryGetDto> Countries { get; set; } = new();
-    public List<ClientGetDto> Clients { get; set; } = new();
+    public List<ClientShortGetDto> Clients { get; set; } = new();
 }
