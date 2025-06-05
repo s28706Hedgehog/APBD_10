@@ -1,4 +1,5 @@
 using DBFirst.Data;
+using DBFirst.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace DBFirst;
@@ -16,6 +17,7 @@ public class Program
             opt => opt.UseSqlServer(
                 builder.Configuration.GetConnectionString("Default")
             ));
+        builder.Services.AddScoped<ITripsService, TripsService>();
 
         var app = builder.Build();
 
@@ -25,6 +27,8 @@ public class Program
         }
 
         app.UseAuthorization();
+
+        app.MapControllers();
 
         app.Run();
     }
