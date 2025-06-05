@@ -8,7 +8,7 @@ namespace DBFirst.Controllers;
 public class TripsController(ITripsService tripsService) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetTrips()
+    public async Task<IActionResult> GetTrips() // highlights issue with max time???
     {
         return Ok(await tripsService.GetTripsAsync());
     }
